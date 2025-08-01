@@ -1,0 +1,874 @@
+# smartfolio
+Portfolio profesional May Consulting
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Profesional Estratégico | Impulsa tu Carrera Freelance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #6366f1, #ec4899, #06b6d4);
+            --gradient-dark: linear-gradient(135deg, #4f46e5, #db2777, #0891b2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.05;
+            z-index: -1;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #6366f1, #ec4899, #06b6d4); }
+            50% { background: linear-gradient(135deg, #06b6d4, #6366f1, #ec4899); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-text .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.6s both;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-card:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--gradient);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 6rem 0;
+            background: var(--light);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -1.5rem;
+            width: 3rem;
+            height: 2px;
+            background: var(--gradient);
+            opacity: 0.5;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 0;
+        }
+
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+        }
+
+        .pricing-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .features-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Interactive elements */
+        .interactive-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">PortfolioImpact</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#precio">Precio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Transforma tu Carrera con un <span class="highlight">Portafolio Estratégico</span></h1>
+                        <p class="subtitle">Deja de perder oportunidades por no tener un portafolio profesional. En 5-7 días, tendrás una presencia digital que <strong>convierte prospectos en clientes</strong>.</p>
+                        
+                        <div class="cta-buttons">
+                            <a href="#precio" class="btn btn-primary interactive-pulse">
+                                ✨ Construir mi Portafolio
+                            </a>
+                            <a href="#proceso" class="btn btn-secondary">
+                                📋 Ver el Proceso
+                            </a>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number">150+</span>
+                                <p class="stat-text">Freelancers Transformados</p>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5-7</span>
+                                <p class="stat-text">Días de Entrega</p>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <p class="stat-text">Satisfacción Garantizada</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                        <div class="hero-card float-animation">
+                            <h3 style="color: var(--primary); margin-bottom: 1rem;">👨‍💻 María González</h3>
+                            <p style="color: var(--gray); margin-bottom: 1.5rem;">UX/UI Designer • Coach de Productividad</p>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="flex: 1; height: 100px; background: linear-gradient(45deg, #f0f9ff, #e0e7ff); border-radius: 10px;"></div>
+                                <div style="flex: 1; height: 100px; background: linear-gradient(45deg, #fef7f7, #fce7f3); border-radius: 10px;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--gray); font-size: 0.9rem;">15 Proyectos Destacados</span>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary); border-radius: 50%;"></div>
+                                    <div style="width: 8px; height: 8px; background: var(--secondary); border-radius: 50%;"></div>
+                                    <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">¿Qué Incluye tu Portafolio Estratégico?</h2>
+                    <p class="section-subtitle">Un servicio completo diseñado específicamente para freelancers y profesionales independientes que buscan impacto sin recursos técnicos.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <h3 class="feature-title">Guía de Estructura Inicial</h3>
+                        <p class="feature-description">Plantilla editable personalizada para tu industria. Incluye secciones estratégicas, copywriting persuasivo y estructura de navegación optimizada para conversión.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Reunión Estratégica 1-a-1</h3>
+                        <p class="feature-description">Sesión de 60 minutos para definir objetivos, audiencia objetivo, propuesta de valor única y estrategia de posicionamiento profesional.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">✍️</div>
+                        <h3 class="feature-title">Desarrollo Completo de Contenido</h3>
+                        <p class="feature-description">Textos profesionales, descripciones de proyectos, categorización estratégica y llamadas a la acción que convierten visitantes en clientes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3 class="feature-title">Sitio Web + PDF Descargable</h3>
+                        <p class="feature-description">Versión navegable responsive para web y PDF profesional para compartir en reuniones, propuestas y redes sociales.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3 class="feature-title">Soporte Técnico Completo</h3>
+                        <p class="feature-description">Te ayudamos a subir tu portafolio a Netlify o Google Sites. Incluye configuración de dominio personalizado y tutorial paso a paso.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Entrega Rápida Garantizada</h3>
+                        <p class="feature-description">Tu portafolio listo en 5-7 días hábiles. Incluye 2 rondas de revisiones y garantía de satisfacción al 100%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proceso" class="process">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Proceso Simple y Efectivo</h2>
+                    <p class="section-subtitle">Solo necesitas dedicar 2-3 horas de tu tiempo. Nosotros nos encargamos del resto.</p>
+                </div>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Reunión Inicial</h3>
+                        <p class="step-description">Definimos objetivos, audiencia y estrategia. Recopilamos proyectos y materiales existentes.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Desarrollo del Contenido</h3>
+                        <p class="step-description">Creamos textos, descripciones y estructura. Te enviamos avances para tu aprobación.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Diseño y Construcción</h3>
+                        <p class="step-description">Desarrollamos la versión web navegable y el PDF descargable con tu branding.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Revisión y Ajustes</h3>
+                        <p class="step-description">2 rondas de revisiones incluidas. Ajustamos detalles hasta tu completa satisfacción.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3 class="step-title">Entrega y Soporte</h3>
+                        <p class="step-description">Subimos tu portafolio online y te entregamos todos los archivos fuente. Incluye tutorial de uso.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="precio" class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Inversión que se Paga Sola</h2>
+                    <p class="section-subtitle">Con solo 1 cliente nuevo, ya recuperaste tu inversión. La mayoría de nuestros clientes triplican sus ingresos en los primeros 3 meses.</p>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge">⚡ OFERTA LIMITADA</div>
+                    <h3 class="pricing-title">Portafolio Profesional Completo</h3>
+                    <div class="pricing-price">$497</div>
+                    <p class="pricing-period">Pago único • Entrega en 5-7 días</p>
+
+                    <ul class="pricing-features">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Guía de estructura inicial personalizada</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Reunión estratégica 1-a-1 (60 min)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Desarrollo completo de contenido</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Sitio web responsive + PDF descargable</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Soporte técnico para publicación</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>2 rondas de revisiones incluidas</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Garantía de satisfacción 100%</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Soporte post-entrega por 30 días</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contacto" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 2rem;">
+                        🚀 Empezar Ahora
+                    </a>
+
+                    <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                        💳 Pagos seguros • 🔒 Garantía 30 días • ⚡ Entrega garantizada
+                    </p>
+                </div>
+            </div
